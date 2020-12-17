@@ -1,7 +1,5 @@
 # dali
 
-![](https://circleci.com/gh/stathissideris/dali.svg?&style=shield&circle-token=6b583590fdcd5458f739f8edb930ed39eb7aaf36)
-
 > I do not understand why, when I ask for grilled lobster in a restaurant, I'm never served a cooked telephone.
 > -- Salvador Dalí
 
@@ -47,8 +45,14 @@ Before adding dali as a dependency, please consider that it's still
 alpha quality and the API and syntax can (and very likely will)
 change. Just add this to the dependencies of your `project.clj`:
 
+``` clojure
+[dali "1.0.2"]
 ```
-[dali "0.7.4"]
+
+Or this, to your `deps.edn`:
+
+``` clojure
+dali/dali {:mvn/version "1.0.2"}
 ```
 
 ## Documentation
@@ -72,8 +76,15 @@ Planned for the future:
 * Porting basic functionality to ClojureScript.
 * More pre-fabricated elements.
 
+## Contributors
+
+* [Stathis Sideris](https://github.com/stathissideris) - original author
+* [Paulo Rafael Feodrippe](https://github.com/pfeodrippe)
+* [Bruce Durling](https://github.com/otfrom)
+* [Alex Harms](https://github.com/onealexharms)
+
 ## License
 
-Copyright © 2014-2016 Stathis Sideris
+Copyright © 2014-2020 Stathis Sideris
 
 Distributed under the Eclipse Public License, the same as Clojure.

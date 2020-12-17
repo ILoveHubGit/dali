@@ -190,6 +190,41 @@
        [:circle {:fill :green}           [60 100] 70]
        [:circle {:fill :orange}          [300 80] 80]]])}
 
+   {:filename "distribute3-manual-step"
+    :document
+    [:dali/page {:stroke :none}
+     [:dali/distribute
+      {:direction :right :step 100}
+      [:rect {:fill :mediumslateblue} [10 10] [25 50]]
+      [:rect {:fill :sandybrown}       [0 10] [20 30]]
+      [:rect {:fill :green}            [0 10] [15 40]]
+      [:rect {:fill :orange}           [0 10] [20 20]]]]}
+
+
+   {:filename "distribute4-anchor-check"
+    :document
+    [:dali/page {:stroke :none}
+     [:dali/stack
+      {:direction :right :gap 20}
+      [:dali/distribute
+       {:direction :down :anchor :top}
+       [:rect {:fill :mediumslateblue}  [10 10] [25 50]]
+       [:rect {:fill :sandybrown}       [10 10] [25 30]]
+       [:rect {:fill :green}            [10 10] [25 40]]
+       [:rect {:fill :orange}           [10 10] [25 50]]]
+      [:dali/distribute
+       {:direction :down :anchor :bottom}
+       [:rect {:fill :mediumslateblue}  [10 10] [25 50]]
+       [:rect {:fill :sandybrown}       [10 10] [25 30]]
+       [:rect {:fill :green}            [10 10] [25 40]]
+       [:rect {:fill :orange}           [10 10] [25 50]]]
+      [:dali/distribute
+       {:direction :down :anchor :center}
+       [:rect {:fill :mediumslateblue}  [10 10] [25 50]]
+       [:rect {:fill :sandybrown}       [10 10] [25 30]]
+       [:rect {:fill :green}            [10 10] [25 40]]
+       [:rect {:fill :orange}           [10 10] [25 50]]]]]}
+
    {:filename "markers1"
     :document
     [:dali/page
@@ -550,6 +585,50 @@
       [:rect {:id :b} [50 150] [50 50]]]
      [:dali/connect {:from :a :to :b :dali/marker-end :sharp}]]}
 
+   {:filename "connect3-manual-anchors"
+    :document
+    [:dali/page {:stroke :black :fill :none}
+     [:defs (prefab/sharp-arrow-marker :sharp)]
+     [:dali/stack {:direction :right, :gap 50}
+      [:rect {:id :a} [50 50] [50 50]]
+      [:rect {:id :b} [50 150] [50 50]]]
+     [:dali/connect {:from :a, :to :b
+                     :from-anchor :top-right, :to-anchor :bottom-left
+                     :dali/marker-end :sharp}]]}
+
+   {:filename "connect3-manual-anchors-centers"
+    :document
+    [:dali/page {:stroke :black :fill :none}
+     [:defs (prefab/sharp-arrow-marker :sharp)]
+     [:dali/stack {:direction :right, :gap 50}
+      [:rect {:id :a} [50 50] [50 50]]
+      [:rect {:id :b} [50 150] [50 50]]]
+     [:dali/connect {:from :a, :to :b
+                     :from-anchor :center, :to-anchor :center
+                     :dali/marker-end :sharp}]]}
+
+   {:filename "connect4-manual-anchors-corner"
+    :document
+    [:dali/page {:stroke :black :fill :none}
+     [:defs (prefab/sharp-arrow-marker :sharp)]
+     [:rect {:id :a} [50 50] [50 50]]
+     [:rect {:id :b} [150 150] [50 50]]
+     [:dali/connect {:from :a, :to :b
+                     :from-anchor :bottom-right, :to-anchor :top-left
+                     :type :-|
+                     :dali/marker-end :sharp}]]}
+
+   {:filename "connect4-manual-automatic-anchors-corner"
+    :document
+    [:dali/page {:stroke :black :fill :none}
+     [:defs (prefab/sharp-arrow-marker :sharp)]
+     [:rect {:id :a} [50 50] [50 50]]
+     [:rect {:id :b} [150 150] [50 50]]
+     [:dali/connect {:from :a, :to :b
+                     :from-anchor :bottom-right
+                     :type :-|
+                     :dali/marker-end :sharp}]]}
+
    {:filename "matrix1"
     :document
     [:dali/page
@@ -805,6 +884,7 @@
 
 (defn render-example [dir filename document]
   (with-redefs [dali.layout/group-for-composite-layout (constantly :node-group-38348)]
+    (.delete (java-io/file (str dir filename ".svg")))
     (io/render-svg document (str dir filename ".svg"))))
 
 (defn render-examples [dir documents]

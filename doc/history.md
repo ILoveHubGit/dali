@@ -1,5 +1,23 @@
 # Version history
 
+## 1.0.2
+
+* Fix validation of anchors in distribute layout
+
+## 1.0.1
+
+* Add :step parameter to distribute to override calculated step
+
+## 1.0.0
+
+* Added :from-anchor and :to-anchor in order to manually control the start and
+  end of connectors
+* Upgrade to latest Clojure (1.10.1)
+
+## 0.7.5
+
+* Added dali.io/render-svg-string
+
 ## 0.7.4
 
 * Fix destructuring in prefab namespace
